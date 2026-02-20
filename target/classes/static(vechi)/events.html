@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UniConnect - Events</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+    <a href="feed.html" class="brand">UniConnect 🎓</a>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+        <button class="btn btn-sm" onclick="logout()" style="background-color: #EF4444;">Logout</button>
+    </div>
+</nav>
+
+<div class="main-grid">
+    <div class="left-sidebar">
+        <div class="card" style="padding: 1rem;">
+            <a href="feed.html" class="nav-link">📰 News Feed</a>
+            <a href="events.html" class="nav-link active">📅 Events</a>
+            <a href="messages.html" class="nav-link">💬 Messages</a>
+        </div>
+    </div>
+
+    <div class="feed-content">
+
+        <div class="card">
+            <h3>Create Event</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+                <input type="text" id="evt-name" placeholder="Event Title (e.g. Hackathon)">
+                <input type="date" id="evt-date">
+            </div>
+            <textarea id="evt-desc" rows="2" placeholder="Event Description details..."></textarea>
+
+            <div style="text-align: right;">
+                <button class="btn btn-sm" onclick="createEvent()">Publish Event</button>
+            </div>
+        </div>
+
+        <h2>Upcoming Events</h2>
+        <div id="events-container">
+            <p style="text-align: center; color: #666;">Loading events...</p>
+        </div>
+    </div>
+
+    <div class="right-sidebar">
+        <div class="card">
+            <h3>Info</h3>
+            <p style="font-size: 0.9rem; color: #666; line-height: 1.5;">
+                Events are a great way to connect with your colleagues. Check this page regularly for exams, parties, and workshops.
+            </p>
+        </div>
+    </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+    // Verificăm autentificarea și încărcăm evenimentele
+    if (!localStorage.getItem('jwtToken')) {
+        window.location.href = 'index.html';
+    } else {
+        loadEvents();
+    }
+</script>
+</body>
+</html>

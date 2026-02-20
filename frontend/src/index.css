@@ -1,0 +1,349 @@
+/* =========================================
+   1. VARIABLES & RESET (AICI SUNT "CHESTIILE CU --")
+   ========================================= */
+:root {
+    /* Brand Colors */
+    --primary: #2563eb;       /* Albastru principal */
+    --primary-hover: #1d4ed8;
+    --secondary: #64748b;     /* Gri secundar (pentru avatare, texte secundare) */
+
+    /* Backgrounds */
+    --bg-body: #f1f5f9;       /* Gri deschis fundal pagină */
+    --bg-card: #ffffff;       /* Alb carduri */
+
+    /* Text */
+    --text-main: #0f172a;     /* Aproape negru */
+    --text-muted: #64748b;    /* Gri text */
+
+    /* Borders & Shadows */
+    --border-color: #e2e8f0;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --radius: 0.5rem;         /* 8px - rotunjire colțuri */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* UTILS */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* BUTTONS & INPUTS */
+button {
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background-color: var(--bg-card);
+    font-size: 0.95rem;
+    font-family: inherit;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.btn-primary:hover { background-color: var(--primary-hover); }
+.btn-primary:disabled { opacity: 0.7; cursor: not-allowed; }
+
+/* =========================================
+   2. AUTH PAGES (Login/Register)
+   ========================================= */
+.auth-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.auth-card {
+    background: var(--bg-card);
+    padding: 2.5rem;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-md);
+    width: 100%;
+    max-width: 450px;
+    border: 1px solid var(--border-color);
+}
+
+.auth-title { font-size: 1.8rem; font-weight: 700; text-align: center; color: var(--primary); margin-bottom: 0.5rem; }
+.auth-subtitle { text-align: center; color: var(--text-muted); margin-bottom: 2rem; font-size: 0.9rem; }
+
+.input-group { position: relative; margin-bottom: 1rem; }
+.input-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
+.input-with-icon { padding-left: 3rem; }
+
+.auth-footer { margin-top: 1.5rem; text-align: center; font-size: 0.9rem; color: var(--text-muted); }
+.auth-footer a { color: var(--primary); font-weight: 600; }
+
+.error-msg {
+    background-color: #fef2f2; color: #ef4444; padding: 0.75rem;
+    border-radius: var(--radius); font-size: 0.9rem; margin-bottom: 1rem;
+    text-align: center; border: 1px solid #fecaca;
+}
+
+/* =========================================
+   3. DASHBOARD LAYOUT (3 COLOANE)
+   ========================================= */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr 280px; /* Stânga | Mijloc | Dreapta */
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+@media (max-width: 1000px) {
+    .dashboard-grid { grid-template-columns: 1fr; }
+    .sidebar-left, .sidebar-right { display: none; }
+}
+
+/* Common Card Style */
+.card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+/* --- LEFT: PROFILE --- */
+.profile-card { padding: 0 !important; }
+.profile-bg { height: 60px; background: linear-gradient(to right, var(--primary), var(--primary-hover)); }
+.profile-content { padding: 0 1rem 1rem; text-align: center; position: relative; }
+.profile-avatar-large {
+    width: 70px; height: 70px; border-radius: 50%; background: var(--text-main);
+    border: 4px solid white; margin: -35px auto 10px;
+    display: flex; align-items: center; justify-content: center;
+}
+.profile-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 2px; }
+.profile-role { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
+.profile-stats {
+    display: flex; justify-content: space-around;
+    border-top: 1px solid var(--border-color); padding-top: 1rem;
+}
+.stat { display: flex; flex-direction: column; }
+.stat-val { font-weight: 700; color: var(--text-main); }
+.stat-label { font-size: 0.8rem; color: var(--text-muted); }
+
+/* Left Nav */
+.mini-nav { padding: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.nav-item {
+    display: flex; align-items: center; gap: 10px; padding: 10px;
+    border-radius: var(--radius); color: var(--text-muted); font-weight: 500;
+    cursor: pointer; transition: 0.2s;
+}
+.nav-item:hover { background-color: #f1f5f9; color: var(--primary); }
+.nav-item.active { background-color: #eff6ff; color: var(--primary); }
+
+/* --- MIDDLE: FEED --- */
+.create-post-card { padding: 1rem; }
+.create-post-header { display: flex; gap: 1rem; margin-bottom: 1rem; }
+.create-post-header textarea {
+    border: none; background: #f8fafc; border-radius: 8px; padding: 10px; resize: none; font-size: 1rem;
+}
+.create-post-header textarea:focus { background: white; box-shadow: 0 0 0 2px var(--primary); }
+.create-post-footer { display: flex; justify-content: flex-end; border-top: 1px solid #f1f5f9; padding-top: 10px; }
+.post-btn { width: auto; padding: 6px 20px; font-size: 0.9rem; margin-top: 0; }
+
+.post-card { padding: 0; }
+.post-header { padding: 1rem; display: flex; justify-content: space-between; align-items: flex-start; }
+.post-author-info { display: flex; gap: 10px; }
+.avatar-small {
+    width: 40px; height: 40px; border-radius: 50%; background: var(--primary); color: white;
+    display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;
+}
+.author-name { font-size: 0.95rem; font-weight: 600; }
+.post-meta { font-size: 0.8rem; color: var(--text-muted); }
+.post-body { padding: 0 1rem 1rem; font-size: 1rem; line-height: 1.6; color: #334155; }
+.post-actions {
+    padding: 0.5rem 1rem; border-top: 1px solid #f1f5f9; display: flex; gap: 1rem;
+}
+.action-btn {
+    background: none; border: none; display: flex; align-items: center; gap: 6px;
+    padding: 8px; border-radius: 6px; color: var(--secondary); font-weight: 500;
+}
+.action-btn:hover { background: #f1f5f9; color: var(--primary); }
+.action-btn.liked { color: #ef4444; }
+.icon-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; }
+
+/* --- RIGHT: EVENTS --- */
+.card-title { font-size: 1rem; font-weight: 700; margin: 1rem; }
+.event-item { display: flex; gap: 1rem; padding: 0.8rem 1rem; border-bottom: 1px solid #f1f5f9; }
+.event-item:last-child { border-bottom: none; }
+.event-date {
+    background: #eff6ff; color: var(--primary); padding: 5px 10px; border-radius: 8px;
+    text-align: center; display: flex; flex-direction: column; min-width: 50px;
+}
+.event-date .day { font-weight: 700; font-size: 1.1rem; }
+.event-date .month { font-size: 0.7rem; font-weight: 600; }
+.event-info h5 { font-size: 0.9rem; margin-bottom: 2px; }
+.event-info p { font-size: 0.8rem; color: var(--text-muted); }
+
+.footer-links { text-align: center; color: var(--text-muted); font-size: 0.75rem; margin-top: 1rem; }
+
+
+/* =========================================
+   4. COMMENTS SECTION (CHAT STYLE)
+   ========================================= */
+
+.active-comment-btn {
+    color: var(--primary);
+    background-color: #eff6ff;
+}
+
+.comments-section {
+    background-color: #f8fafc;
+    border-top: 1px solid var(--border-color);
+    padding: 1rem;
+    margin-top: 0;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.comment-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.comment-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--secondary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.comment-bubble {
+    background-color: white;
+    border: 1px solid var(--border-color);
+    padding: 10px 14px;
+    border-radius: 0 16px 16px 16px; /* Colț ascuțit stânga-sus */
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    max-width: 85%;
+}
+
+.comment-author {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--text-main);
+    margin-bottom: 4px;
+    display: block;
+}
+
+.comment-text {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #334155;
+    display: block;
+}
+
+.comment-time {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 6px;
+    display: block;
+    text-align: right;
+}
+
+.comment-form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    position: relative;
+}
+
+.comment-form input {
+    flex: 1;
+    padding: 10px 15px;
+    border-radius: 24px;
+    border: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    background-color: white;
+}
+
+.comment-form input:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.comment-form button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.comment-form button:hover {
+    background-color: var(--primary-hover);
+    transform: scale(1.1);
+}

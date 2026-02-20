@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UniConnect - Welcome</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="login-container">
+    <div class="login-hero">
+        <h1>UniConnect 🎓</h1>
+        <p>Connect, Share, and Learn with your campus community.</p>
+    </div>
+
+    <div class="login-form-wrapper">
+        <div id="login-section" class="auth-box">
+            <div class="auth-header">
+                <h2>Welcome Back</h2>
+                <p style="color: #6B7280;">Please enter your details to sign in.</p>
+            </div>
+            <input type="email" id="login-email" placeholder="Student Email">
+            <input type="password" id="login-password" placeholder="Password">
+            <button class="btn" onclick="login()">Sign In</button>
+            <p id="login-error" style="color: red; margin-top: 10px;"></p>
+            <div style="margin-top: 20px; text-align: center;">
+                <p>Don't have an account? <a href="#" onclick="toggleAuth()" style="color: var(--primary);">Sign up</a></p>
+            </div>
+        </div>
+
+        <div id="register-section" class="auth-box hidden">
+            <div class="auth-header">
+                <h2>Create Account</h2>
+                <p style="color: #6B7280;">Join your faculty network today.</p>
+            </div>
+            <input type="text" id="reg-username" placeholder="Full Name">
+            <input type="email" id="reg-email" placeholder="Email Address">
+            <input type="password" id="reg-password" placeholder="Create Password">
+            <div style="display: flex; gap: 10px;">
+                <select id="reg-role">
+                    <option value="STUDENT">Student</option>
+                    <option value="REPRESENTATIVE">Representative</option>
+                </select>
+            </div>
+            <input type="text" id="reg-faculty" placeholder="Faculty (e.g., Computer Science)">
+            <input type="text" id="reg-dept" placeholder="Department / Group">
+
+            <button class="btn" onclick="register()">Create Account</button>
+            <p id="reg-error" style="color: red; margin-top: 10px;"></p>
+
+            <div style="margin-top: 20px; text-align: center;">
+                <p>Already have an account? <a href="#" onclick="toggleAuth()" style="color: var(--primary);">Sign in</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
